@@ -1,5 +1,6 @@
 package com.noxtec.desafio_noxtec.controller;
 
+import com.noxtec.desafio_noxtec.model.dto.ContatoSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.noxtec.desafio_noxtec.model.Contato;
@@ -32,8 +33,8 @@ public class ContatoController {
     }
 
     @PostMapping
-    public Contato salvarContato(@RequestBody Contato contato) {
-        return contatoService.save(contato);
+    public Contato salvarContato(@RequestBody ContatoSaveDTO contatoSaveDTO) {
+        return contatoService.save(contatoSaveDTO);
     }
 
     @PutMapping("/{id}")

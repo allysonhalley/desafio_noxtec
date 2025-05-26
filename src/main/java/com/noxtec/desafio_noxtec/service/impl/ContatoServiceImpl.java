@@ -1,6 +1,9 @@
 package com.noxtec.desafio_noxtec.service.impl;
 
+import com.noxtec.desafio_noxtec.model.dto.ContatoSaveDTO;
+import com.noxtec.desafio_noxtec.specification.ContatoSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.noxtec.desafio_noxtec.model.Contato;
@@ -25,10 +28,13 @@ public class ContatoServiceImpl implements ContatoService {
 
     @Override
     public List<Contato> findByNomeOrEmailOrCelular(ContatoFiltroBuscaDTO contatoFiltroBuscaDTO) {
+
         String nome = contatoFiltroBuscaDTO.nome() == null ? "" : contatoFiltroBuscaDTO.nome();
         String email = contatoFiltroBuscaDTO.email() == null ? "" : contatoFiltroBuscaDTO.email();
         String celular = contatoFiltroBuscaDTO.celular() == null ? "" : contatoFiltroBuscaDTO.celular();
-        return contatoRepository.findByNomeOrEmailOrCelular(nome,email,celular);
+
+        Specification<Contato> spec = ContatoSpecifications.filtroDinamico(nome, email, celular);
+        return contatoRepository.findAll(spec);
     }
 
     @Override
@@ -38,7 +44,12 @@ public class ContatoServiceImpl implements ContatoService {
     }
 
     @Override
-    public Contato save(Contato contato) {
+    public Contato save(ContatoSaveDTO contatoSaveDTO) {
+        Contato contato = new Contato();
+        contato.setNome(contatoSaveDTO.nome());
+        contato.setEmail(contatoSaveDTO.email() == null ? "" : contatoSaveDTO.email());
+        contato.setCelular(contatoSaveDTO.celular());
+        contato.setTelefone(contatoSaveDTO.telefone() == null ? "" : contatoSaveDTO.telefone());
         return contatoRepository.save(contato);
     }
 

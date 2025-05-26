@@ -32,10 +32,10 @@ public class Contato{
     private String telefone;
 
     @Column(name = "contato_sn_favorito", length = 1)
-    private Character favorito;
+    private Character favorito = 'N';
 
     @Column(name = "contato_sn_ativo", length = 1)
-    private Character ativo;
+    private Character ativo = 'S';
 
     @Column(name = "contato_dh_cad", updatable = false)
     @CreationTimestamp

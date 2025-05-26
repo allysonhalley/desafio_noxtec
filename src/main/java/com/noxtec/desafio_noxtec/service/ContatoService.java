@@ -1,6 +1,7 @@
 package com.noxtec.desafio_noxtec.service;
 import com.noxtec.desafio_noxtec.model.Contato;
 import com.noxtec.desafio_noxtec.model.dto.ContatoFiltroBuscaDTO;
+import com.noxtec.desafio_noxtec.model.dto.ContatoSaveDTO;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ContatoService {
 
     Contato findById(String id);
 
-    Contato save(Contato contato);
+    Contato save(ContatoSaveDTO contatoSaveDTO);
 
     Contato update(Contato contato);
 
