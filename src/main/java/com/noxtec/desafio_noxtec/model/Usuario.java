@@ -19,7 +19,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String email;
